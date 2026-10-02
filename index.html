@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>soyka</title>
+  <meta name="description"
+    content="Merge iconic Soyjaks in this addictive Suika-style physics puzzle game! Drop, bounce, merge, and evolve your soyjaks into the legendary Giga & Omega Soyjak!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Permanent+Marker&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-layout">
+    <!-- Top Navigation / Brand Bar -->
+
+
+    <!-- Center Box: Canvas & Drop Zone -->
+    <section class="canvas-container" id="canvas-container">
+      <!-- Top Animated Conveyor Belt Feeding Next Soyjak (Perspective from behind) -->
+      <div id="conveyor-assembly" class="conveyor-assembly">
+        <div class="conveyor-track-back"></div>
+        <div class="conveyor-feed-stage">
+          <div class="conveyor-belt-surface">
+            <div class="conveyor-slats"></div>
+          </div>
+          <div class="conveyor-item-feed">
+            <img id="next-img" src="assets/soyjaks/soyak.png" alt="Next Soyjak">
+          </div>
+        </div>
+      </div>
+
+      <!-- The Canvas where Matter.js & Particles render -->
+      <canvas id="game-canvas"></canvas>
+
+      <!-- Drop Guide / Hover Indicator (Only showing current dropper Jak, dotted line removed) -->
+      <div id="drop-guide" class="drop-guide">
+        <div class="drop-dropper">
+          <img id="dropper-img" src="assets/soyjaks/soyak.png" alt="Dropper">
+        </div>
+      </div>
+
+      <!-- Game Over Modal Overlay -->
+      <div id="game-over-overlay" class="overlay hidden">
+        <div class="modal-card">
+          <h2 class="gameover-title">OVERFLOWED!</h2>
+          <p class="gameover-subtitle">The container couldn't hold any more soy!</p>
+          <div class="gameover-stats">
+            <div class="stat-item">
+              <span class="stat-name">Final Score</span>
+              <span id="final-score" class="stat-val">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-name">Highest Tier</span>
+              <span id="final-tier" class="stat-val">-</span>
+            </div>
+          </div>
+          <button id="btn-play-again" class="btn primary-btn">PLAY AGAIN</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Pinned Awards Canvas / Overlay on Random Points of the Page -->
+  <div id="pinned-awards-container" class="pinned-awards-container" aria-live="polite"></div>
+
+  <!-- Phone Score Display in Bottom-Left -->
+  <div id="phone-score-wrapper" class="phone-score-wrapper">
+    <div class="phone-inner-screen">
+      <div class="reddit-score-card">
+        <div class="reddit-header">
+          <div class="reddit-avatar"></div>
+          <div class="reddit-meta">
+            <span class="reddit-sub">r/soyka</span>
+            <span class="reddit-user">• u/soyjaker • 2h</span>
+          </div>
+        </div>
+        <div class="reddit-title">My current run in the soy vat is going insane</div>
+        <div class="reddit-body-score">
+          <div class="reddit-score-row">
+            <span class="reddit-label">SCORE</span>
+            <span id="score" class="reddit-val highlight">0</span>
+          </div>
+          <div class="reddit-score-row">
+            <span class="reddit-label">BEST</span>
+            <span id="best-score" class="reddit-val">0</span>
+          </div>
+        </div>
+        <div class="reddit-footer">
+          <div class="reddit-vote-pill">
+            <span class="arrow up">▲</span>
+            <span class="vote-num">4.2k</span>
+            <span class="arrow down">▼</span>
+          </div>
+          <div class="reddit-comment-pill">
+            <span>💬 420</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img id="showing-phone-img" src="showingphone.png" alt="Soyjak Showing Phone" class="showing-phone-img">
+  </div>
+
+  <!-- Merchant in Top Left -->
+  <div id="merchant-character" class="merchant-character" title="Merchant">
+    <img src="assets/merchant.png" alt="Merchant">
+  </div>
+
+  <!-- Button That Does Nothing in Bottom Right -->
+  <div id="btn-does-nothing" class="btn-does-nothing" title="Button that does nothing">
+    <img src="assets/buttonthatdoesnothing.png" alt="Button that does nothing">
+  </div>
+
+  <!-- Audio Context / Sound Elements fallback -->
+  <script src="assets/matter.min.js"></script>
+  <script src="game.js"></script>
+</body>
+
+</html>
